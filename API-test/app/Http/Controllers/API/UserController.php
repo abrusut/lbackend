@@ -27,10 +27,10 @@ class UserController extends Controller
      * @param int $itemsPerPage
      * @return \Illuminate\Http\Response
      */
-    public function getAllPaginate(Request $request,$page,$itemsPerPage )
+    public function getAllPaginate(Request $request, $page, $itemsPerPage)
     {
         $users = DB::table('users')->paginate($itemsPerPage);
-    
+        
         return response()->json($users, 200);
     }
     
@@ -55,16 +55,11 @@ class UserController extends Controller
     {
         $name = $request->name;
         $email = $request->email;
-        $yaExisteUsuario =
-            DB::table('users')
-                ->where('name', '=', $name)
-                ->orWhere('email', '=', $email)
-                ->count();
+        $yaExisteUsuario = DB::table('users')->where('name', '=', $name)->orWhere('email', '=', $email)->count();
         
-        if ($yaExisteUsuario >0) {
+        if ($yaExisteUsuario > 0) {
             return response()->json(array("message" => "El usuario o email ya existen "), 400);
         }
-        
         
         $user = new User();
         $user->name = $request->name;
@@ -72,7 +67,9 @@ class UserController extends Controller
         $user->password = $request->password;
         
         $aRoleAllowed = array("ROLE_STUDENT" => UserType::ROLE_STUDENT, "ROLE_TEACHER" => UserType::ROLE_TEACHER,);
-        if (is_null($request->role) || $request->role == "" || !in_array($request->role, $aRoleAllowed)) $user->role = UserType::ROLE_STUDENT; else {
+        if (is_null($request->role) || $request->role == "" || !in_array($request->role, $aRoleAllowed)) {
+            $user->role = UserType::ROLE_STUDENT;
+        } else {
             $user->role = $request->role;
         }
         

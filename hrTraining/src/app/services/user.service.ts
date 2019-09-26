@@ -30,8 +30,13 @@ export class UserService {
     return this.http.put(url, user);
   }
 
-  findAllUsers(page: number= 0, itemsPerPage: number= 10): Observable<any> {
-    const url = URL_SERVICIOS + '/users?page=' + page + '&itemsPerPage=' + itemsPerPage ;
+  findAllUsers(): Observable<any> {
+    const url = URL_SERVICIOS + 'users' ;
+    return this.http.get(url);
+  }
+
+  findAllUsersPaginate(page: number= 0, itemsPerPage: number= 10): Observable<any> {
+    const url = URL_SERVICIOS + 'users?page=' + page + '&itemsPerPage=' + itemsPerPage ;
     return this.http.get(url);
   }
 
