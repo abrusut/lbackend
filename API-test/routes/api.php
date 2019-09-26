@@ -19,6 +19,6 @@ use Illuminate\Http\Request;
 
 Route::apiResource('users', 'API\UserController');
 
-//Route::get('/users', 'API\UserController@index');
+Route::get('/users/{page}/{itemsPerPage}', 'API\UserController@getAllPaginate');
 
 //Route::get('/users/{id}', 'API\UserController@getUser');

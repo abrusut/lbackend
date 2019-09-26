@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\UserType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -15,11 +17,24 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
         $users = User::all();
         return response()->json($users, 200);
     }
-
+    
+    /**
+     * Display a listing of the resource.
+     * @param int $page
+     * @param int $itemsPerPage
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllPaginate(Request $request,$page,$itemsPerPage )
+    {
+        $users = DB::table('users')->paginate($itemsPerPage);
+    
+        return response()->json($users, 200);
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,57 +42,71 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return response()->json($user, 200);
+        return response()->json(User::where('id', $id)->get());
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $name = $request->name;
+        $email = $request->email;
+        $yaExisteUsuario =
+            DB::table('users')
+                ->where('name', '=', $name)
+                ->orWhere('email', '=', $email)
+                ->count();
+        
+        if ($yaExisteUsuario >0) {
+            return response()->json(array("message" => "El usuario o email ya existen "), 400);
+        }
+        
+        
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->pasword = $request->password;
-        $user->role = $request->role;
-
+        $user->password = $request->password;
+        
+        $aRoleAllowed = array("ROLE_STUDENT" => UserType::ROLE_STUDENT, "ROLE_TEACHER" => UserType::ROLE_TEACHER,);
+        if (is_null($request->role) || $request->role == "" || !in_array($request->role, $aRoleAllowed)) $user->role = UserType::ROLE_STUDENT; else {
+            $user->role = $request->role;
+        }
+        
         $user->save();
         return response()->json($user, 201);
-        //Esta función guardará las tareas que enviaremos mediante vuejs
     }
-
-
-
+    
+    
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
         $input = $request->all();
-
+        
+        $user->name = $input['name'];
         $user->email = $input['email'];
-        $user->pasword = $input['password'];
+        $user->password = $input['password'];
         $user->role = $input['role'];
-
+        
         $user->save();
-
+        
         return response()->json($user, 200);
-        //Esta función actualizará la tarea que hayamos seleccionado
-
+        
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
