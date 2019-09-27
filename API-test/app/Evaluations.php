@@ -10,11 +10,11 @@ class Evaluations extends Model
     
     public function students()
     {
-        return $this->belongsTo('App\User', 'student_id');
+        return $this->belongsTo(User::class, 'student_id');
     }
     
     public function teachers()
     {
-        return $this->belongsTo('App\User', 'teacher_id');
+        return $this->belongsTo(User::class, 'teacher_id');
     }
 }

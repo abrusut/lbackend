@@ -22,12 +22,12 @@ export class UserDetailComponent implements OnInit {
     this.userService.findUserById(this.id)
       .subscribe(data => {
         console.log(data);
-        this.user = data;
+        this.user = data[0];
       }, error => console.log(error));
   }
 
   list() {
-    this.router.navigate(['users']);
+    this.router.navigate(['users-paginate']);
   }
 
 }

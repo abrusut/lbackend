@@ -24,12 +24,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      * @param int $page
-     * @param int $itemsPerPage
+     * @param int $size
      * @return \Illuminate\Http\Response
      */
-    public function getAllPaginate(Request $request, $page, $itemsPerPage)
+    public function getAllPaginate(Request $request, $size)
     {
-        $users = DB::table('users')->paginate($itemsPerPage);
+        $users = DB::table('users')->paginate($size);
         
         return response()->json($users, 200);
     }

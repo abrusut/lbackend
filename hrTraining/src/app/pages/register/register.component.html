@@ -7,14 +7,25 @@
     </div>
 
     <div class="form-group">
-      <label for="name">Last Name</label>
-      <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
+      <label for="name">Email</label>
+      <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
     </div>
 
     <div class="form-group">
-      <label for="name">First Name</label>
+      <label for="name">Password</label>
       <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
     </div>
+
+    <div class="form-group">
+        <label for="sizePerPage">Type User</label>
+        <select name="role" [(ngModel)]="user.role"
+           class="form-control" required >
+            <option value="">Select Type</option>
+            <option  *ngFor="let option of this.options" [value]="option">
+              {{option}}
+            </option>
+          </select>
+      </div>
 
     <button type="submit" class="btn btn-success">Save</button>
   </form>

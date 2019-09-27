@@ -1,4 +1,15 @@
 npm install bootstrap jquery --save
+npm install @angular/cdk --save
+
+npm install primeng --save
+npm install primeicons --save
+
+"styles": [
+  "node_modules/primeng/resources/themes/nova-light/theme.css",
+  "node_modules/primeng/resources/primeng.min.css",
+  "node_modules/primeicons/primeicons.css",
+  //...
+],
 
 abrusut@abrusut-H310M-H-2-0:~/public_html/test/hrTraining/src/app$ nvm list
        v12.11.0

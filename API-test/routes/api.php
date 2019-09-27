@@ -18,7 +18,9 @@ use Illuminate\Http\Request;
 // });
 
 Route::apiResource('users', 'API\UserController');
+Route::apiResource('evaluation', 'API\EvaluationController');
 
-Route::get('/users/{page}/{itemsPerPage}', 'API\UserController@getAllPaginate');
+Route::get('/users-paginate/size/{size}', 'API\UserController@getAllPaginate');
+Route::get('/evaluate-paginate/size/{size}', 'API\EvaluationController@getAllPaginate');
 
 //Route::get('/users/{id}', 'API\UserController@getUser');

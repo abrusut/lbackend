@@ -7,49 +7,30 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { Evaluation } from '../domain/evaluation.domain';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class EvaluationService {
 
   usuario: User;
   token: string;
-  debug = '?XDEBUG_SESSION_START=18475';
 
   constructor(public http: HttpClient, public router: Router) {
-    console.log('Servicio de usuarios');
+    console.log('Servicio de evaluaciones');
   }
 
-  registrarUser(user: User): Observable<any> {
-    const url: string = URL_SERVICIOS + '/users';
+  saveEvaluation(evaluation: Evaluation): Observable<any> {
+    const url: string = URL_SERVICIOS + '/evaluation';
 
-    return this.http.post(url, user);
+    return this.http.post(url, evaluation);
   }
 
-  actualizarUsuario(user: User): Observable<any> {
-    const url: string = URL_SERVICIOS + '/usuario/' + user.id;
-    return this.http.put(url, user);
-  }
-
-  findAllUsers(): Observable<any> {
-    const url = URL_SERVICIOS + '/users';
-    const params = this.createHttpParams({});
-    return this.http.get<any>(url, { params: params })
-    .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
-  }
-
-
-
-  findUserById(id): Observable<any> {
-    const url = URL_SERVICIOS + '/users/' + id;
-    return this.http.get(url);
-  }
-
-  public findAllUsersPaginate(page: number, size: number): Observable<any> {
-    const url = URL_SERVICIOS + '/users-paginate' + `/size/${size}?page=${page}`;
+  public findAllEvaluationPaginate(page: number, size: number): Observable<any> {
+    const url = URL_SERVICIOS + '/evaluation-paginate' + `/size/${size}?page=${page}`;
     const params = this.createHttpParams({});
 
     return this.http.get<any>(url, { params: params })
@@ -62,11 +43,11 @@ export class UserService {
     return throwError(error);
   }
 
-private log(level: string, message: any): void {
+  private log(level: string, message: any): void {
         console[level](message);
-}
+  }
 
-private createHttpParams(values: { [index: string]: any }): HttpParams {
+  private createHttpParams(values: { [index: string]: any }): HttpParams {
     let params: HttpParams = new HttpParams();
 
     Object.keys(values).forEach((key: string) => {
@@ -77,7 +58,7 @@ private createHttpParams(values: { [index: string]: any }): HttpParams {
     });
 
     return params;
-}
+  }
 
 
 }

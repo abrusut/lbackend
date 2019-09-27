@@ -12,11 +12,14 @@ export class RegisterComponent implements OnInit {
 
   user: User = {};
   submitted = false;
+  options: any[];
 
   constructor(private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
+    this.options = ['ROLE_TEACHER','ROLE_STUDENT'];
+
   }
 
   newEmployee(): void {
@@ -35,7 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/users-paginate']);
   }
 
 }
