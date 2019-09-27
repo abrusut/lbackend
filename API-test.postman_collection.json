@@ -1,0 +1,260 @@
+{
+	"info": {
+		"_postman_id": "a5274b9c-40d7-47a0-8014-45b01e69fcb1",
+		"name": "API-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:83/test/API-test/public/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/users?XDEBUG_SESSION_START=11325",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "11325"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/users/1?XDEBUG_SESSION_START=19747",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/users/1?XDEBUG_SESSION_START=19747",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"users",
+						"1"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "19747"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/users/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"name\": \"gustavo2\",\n        \"email\": \"gustavo2@gmail.com\",\n        \"password\": \"gustavo\",\n        \"role\": \"asdasdsa\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/users/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"gustavo21111\",\n    \"email\": \"gustavo21111@gmail.com\",\n    \"password\": \"gustavo21111\",\n    \"role\": \"ROLE_TEACHER\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/users-paginate?XDEBUG_SESSION_START=11325",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/users-paginate/size/5?XDEBUG_SESSION_START=11325&page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"users-paginate",
+						"size",
+						"5"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "11325"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/evaluation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/evaluation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"evaluation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/evaluate-paginate/size/5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/evaluate-paginate/size/5?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"evaluate-paginate",
+						"size",
+						"5"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:83/test/API-test/public/api/evaluation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"score\": \"11\",\n            \"teacher_id\": 1,\n            \"student_id\": 2\n        }"
+				},
+				"url": {
+					"raw": "http://localhost:83/test/API-test/public/api/evaluation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "83",
+					"path": [
+						"test",
+						"API-test",
+						"public",
+						"api",
+						"evaluation"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
